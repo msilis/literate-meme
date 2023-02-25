@@ -1,0 +1,12 @@
+GET http://localhost:3001/todo
+
+###
+
+POST http://localhost:3001/todo/register
+Content-Type: application/json
+
+{
+    "username": "carlos",
+    "password": "pawPatrol"
+}
+
