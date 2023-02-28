@@ -7,7 +7,8 @@ export default function LoginModal({
   setUserId,
   setUserLoggedIn,
   getToDo,
-  setUserAlias
+  setUserAlias,
+  setUserToken
 }) {
   const username = useRef();
   const password = useRef();
@@ -23,10 +24,7 @@ export default function LoginModal({
   const invalidLoginText = invalidLogin
     ? "invalidLoginVisible"
     : "invalidLoginHidden";
-  //Conditional rendering for login button
-
-  //Conditional functin for login/logout button
-
+  
   //function to check credentials and login user
   function handleLoginUser() {
     const loginData = {
@@ -58,7 +56,9 @@ export default function LoginModal({
           return response.json();
         })
         .then((data) => {
-          return setUserId(data);
+          setUserId(data.userLogin)
+          setUserToken(data.token)
+          return;
         }).then(()=>{
             getToDo()
         });

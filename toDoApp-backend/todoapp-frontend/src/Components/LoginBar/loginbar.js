@@ -48,6 +48,7 @@ export default function LoginBar(props) {
         setUserId={props.setUserId}
         getToDo={props.getToDo}
         setUserAlias={props.setUserAlias}
+        setUserToken={props.setUserToken}
       />
     </div>
   );

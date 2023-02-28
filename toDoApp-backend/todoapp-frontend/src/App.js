@@ -16,6 +16,7 @@ function App() {
   const [editId, setEditId] = useState("");
   const [editText, setEditText] = useState("");
   const [userAlias, setUserAlias] = useState("");
+  const [userToken, setUserToken] = useState("");
 
   //Ref for addToDo
   const toDoInput = useRef();
@@ -29,6 +30,7 @@ function App() {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        "authorization": `Bearer ${userToken}`
       },
       body: JSON.stringify(getToDoData),
     });
@@ -63,6 +65,8 @@ function App() {
         getToDo={getToDo}
         userAlias={userAlias}
         setUserAlias={setUserAlias}
+        userToken={userToken}
+        setUserToken={setUserToken}
       />
       <Header />
       <AddToDo
@@ -76,6 +80,7 @@ function App() {
         editText={editText}
         setEditText={setEditText}
         toDoInput={toDoInput}
+        userToken={userToken}
       />
       <ToDoContainer
         userToDo={userToDo}

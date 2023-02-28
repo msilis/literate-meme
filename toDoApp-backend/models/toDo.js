@@ -7,12 +7,17 @@ const toDoSchema = new mongoose.Schema({
     },
     toDoBody: {
         type: String,
-        require: true
+        require: true,
+        //Check for string length and empty string
+        maxLength: 140,
+        validate: /\S+/
+
     },
     completed: {
         type: Boolean,
         require: true
     }
+    
 });
 
 module.exports = mongoose.model('ToDo', toDoSchema)
