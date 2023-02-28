@@ -2,13 +2,20 @@ const express = require("express");
 const router = express.Router();
 const ToDo = require("../models/toDo");
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
+const {
+  checkToDoLength,
+  checkUserName,
+  checkImage,
+  checkToken,
+} = require("../middleware/middleware");
 
 router.get("/", (req, res) => {
   res.send("You have gotten to the right place.");
 });
 
 //Register new user
-router.post("/register", async (req, res) => {
+router.post("/register", checkUserName, async (req, res) => {
   console.log(req.body);
   const usr = req.body.username;
   const pwd = req.body.password;
@@ -25,39 +32,63 @@ router.post("/register", async (req, res) => {
 });
 
 //Login existing user
-router.post("/login", async (req, res) => {
+router.post("/login", checkUserName, async (req, res) => {
   console.log("logging in");
   const usr = req.body.username;
   const pwd = req.body.password;
   try {
+    console.log("doing username check");
     const userLogin = await User.findOne({ username: usr, password: pwd });
     if (!userLogin) {
       console.log("Login not sucessful");
       res.status(401).send("Username or password incorrect");
+    } else {
+      console.log("it got to here");
+      let token = jwt.sign(
+        {
+          username: usr,
+          password: pwd,
+        },
+        "jwt-secret",
+        {
+          algorithm: "HS256",
+        }
+      );
+      res.status(200).json({
+        userLogin: userLogin["id"],
+        token: token,
+      });
     }
-    res.status(200).json(userLogin["id"]);
   } catch (err) {
-    console.log("Wrong username or password.");
+    console.log(err);
   }
 });
 
-//Post ToDo
-router.post("/add", toDoLength, async (req, res) => {
-  console.log(req.body);
-  const userId = req.body.userId;
-  const toDoText = req.body.toDoText;
-  const newToDo = new ToDo({
-    authorId: userId,
-    toDoBody: toDoText,
-    completed: false,
-  });
-  try {
-    const addToDo = await newToDo.save();
-    res.status(200).json(addToDo);
-  } catch (err) {
-    res.status(404).send({ msg: "There was an error" });
+//Add ToDo
+router.post(
+  "/add",
+  checkToken,
+  checkToDoLength,
+  checkImage,
+  async (req, res) => {
+    console.log(req.body);
+    const userId = req.body.userId;
+    const toDoText = req.body.toDoText;
+    const newToDo = new ToDo({
+      authorId: userId,
+      toDoBody: toDoText,
+      completed: false,
+    });
+    try {
+      const addToDo = await newToDo.save();
+      res.json(addToDo);
+    } catch (err) {
+      console.log("Error got triggered")
+      console.log(err)
+      res.status(400).send({ msg: "There was an error" });
+    }
   }
-});
+);
 
 //Get user's ToDo's
 router.post("/getToDo", async (req, res) => {
@@ -118,16 +149,6 @@ async function findToDoById(req, res, next) {
   //if todo is in database, assign its value to 'todo'
   res.todo = todo;
   //continue with operation
-  next();
-}
-
-//Check ToDo length middleware
-async function toDoLength(req, res, next){
-  const checkToDo = req.body.toDoText;
-  console.log(checkToDo.length,  "line 127")
-  if(checkToDo.length > 140){
-    return res.status(413).json({message: "Item is larger than 140 characters."})
-  }
   next();
 }
 
