@@ -1,0 +1,50 @@
+.modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: modalFadeIn 0.5s;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.registerModalContainer {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  height: 13rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+  border: 5px solid gray;
+  border-radius: 15px;
+  background-color: darkgray;
+  box-shadow: 5px 5px 5px black;
+  align-items: center;
+}
+
+.createModalHidden {
+  display: none;
+}
+
+.createModalVisible {
+  display: block;
+}
+
+.createButton {
+  margin-top: 2rem;
+  width: 6rem;
+}
+
+.cancelButton {
+  width: 6rem;
+}

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const toDoSchema = new mongoose.Schema({
-    author: {
+    authorId: {
         type: String,
         require: true
     },

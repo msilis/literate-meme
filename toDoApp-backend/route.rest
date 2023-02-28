@@ -10,3 +10,30 @@ Content-Type: application/json
     "password": "pawPatrol"
 }
 
+###
+POST http://localhost:3001/todo/login
+Content-Type: application/json
+
+{
+    "username": "carlos",
+    "password": "pawPatrol"
+}
+
+###
+
+POST http://localhost:3001/todo/add
+Content-Type: application/json
+
+{
+    "userId": "63fa81c34d7e3d67a8ef9405",
+    "toDoText": "read more book"
+}
+
+###
+
+POST http://localhost:3001/todo/getToDo
+Content-Type: application/json
+
+{
+    "userId": "63fa81c34d7e3d67a8ef9405"
+}

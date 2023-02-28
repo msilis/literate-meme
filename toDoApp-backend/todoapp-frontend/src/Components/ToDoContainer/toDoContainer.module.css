@@ -1,4 +1,10 @@
 .toDoContainer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap: .5rem;
+    align-items: center;
     width: 50rem;
     min-height: 10rem;
     border: 5px solid black;
@@ -7,4 +13,63 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.toDoCard {
+    width: 30rem;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px gray;
+    
+}
+
+.toDoText {
+    display: flex;
+    flex-direction: row;
+    
+    gap: .5rem;
+    margin-left: 1rem;
+    align-items: center;
+    
+}
+
+.checkButton {
+    transition: .3s;
+}
+
+.checkButton:hover {
+    cursor: pointer;
+}
+
+.checkButton:active {
+    transform: translateY(5px);
+}
+
+.deleteButton {
+    transition: .3s;
+}
+
+.deleteButton:active {
+    transform: translateY(5px);
+}
+
+.deleteButton:hover {
+    cursor: pointer;
+}
+
+.editButton {
+    transition: .3s;
+}
+
+.editButton:hover {
+    cursor: pointer;
+}
+
+.editButton:active {
+    transform: translateY(5px);
+}
+
+.completedItem {
+    text-decoration: line-through;
 }
