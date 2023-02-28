@@ -81,7 +81,7 @@ router.post(
     });
     try {
       const addToDo = await newToDo.save();
-      res.json(addToDo);
+      res.status(200).json(addToDo);
     } catch (err) {
       console.log("Error got triggered")
       console.log(err)

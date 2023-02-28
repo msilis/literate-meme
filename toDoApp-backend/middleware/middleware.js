@@ -24,9 +24,7 @@ function checkUserName(req, res, next) {
     next();
   } else {
     console.log("Username check NOT passed");
-    res
-      .status(401)
-      .send({ message: "Invalid username, needs to end with '@gmail.com'" });
+    res.status(401).send({ message: "Invalid username, needs to end with '@gmail.com'" });
   }
 }
 
@@ -48,16 +46,16 @@ function checkToken(req, res, next) {
   let token = req.headers["authorization"].split(" ")[1];
   console.log("token: ", token);
   try {
-    console.log("checking token")
-    if(jwt.verify(token, "jwt-secret")){
-        res.send({message: "Token verified"})
-        next();
-    }else{
-        res.status(403).send({'msg': 'Your token was not verified'})
+    console.log("checking token");
+    if (jwt.verify(token, "jwt-secret")) {
+      res.send({ message: "Token verified" });
+      next();
+    } else {
+      res.status(403).send({ msg: "Your token was not verified" });
     }
-    
-    
-  } catch (err) {res.send({message: "There was an error in the token check"})}
+  } catch (err) {
+    res.send({ message: "There was an error in the token check" });
+  }
 }
 
 module.exports = { checkToDoLength, checkUserName, checkImage, checkToken };
