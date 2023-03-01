@@ -18,12 +18,7 @@ export default function AddToDo({
         alert(`You can't add an empty item!.`)
         return
     }
-   /*  //check for input longer than 140 characters
-    if(toDoInput.current?.value.length > 141){
-        alert(`The todo has to be less than 140 characters.`)
-        toDoInput.current.value = ""
-        return
-    } */
+  
     //Organise data to send to database
     const toDoData = {
       userId: userId,

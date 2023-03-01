@@ -30,12 +30,11 @@ function App() {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        "authorization": `Bearer ${userToken}`
+        /* "authorization": `Bearer ${userToken}` */
       },
       body: JSON.stringify(getToDoData),
     });
     const result = await response.json();
-    console.log(result);
 
     setUserToDo(result);
 
@@ -44,7 +43,6 @@ function App() {
       console.log(err);
     }
   }
-  console.log(userToDo);
 
   useEffect(() => {
     //Initial call to database to get array of to dos
@@ -93,6 +91,7 @@ function App() {
         editText={editText}
         setEditText={setEditText}
         toDoInput={toDoInput}
+        userToken={userToken}
       />
     </div>
   );

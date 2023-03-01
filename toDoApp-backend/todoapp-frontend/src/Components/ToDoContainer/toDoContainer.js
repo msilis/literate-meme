@@ -16,7 +16,8 @@ export default function ToDoContainer({
   setEditId,
   editText,
   setEditText,
-  toDoInput
+  toDoInput,
+  userToken
 }) {
   /* const checkValue = userToDo.completed ? checkBlack : checkGray; */
   //Delete an item
@@ -27,6 +28,7 @@ export default function ToDoContainer({
         method: "DELETE",
         headers: {
           "content-type": "application/json",
+          "authorization": `Bearer ${userToken}`
         },
       })
         .then((response) => console.log(response))

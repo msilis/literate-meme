@@ -48,14 +48,17 @@ function checkToken(req, res, next) {
   try {
     console.log("checking token");
     if (jwt.verify(token, "jwt-secret")) {
-      res.send({ message: "Token verified" });
-      next();
+      console.log("Token verified")
+      req.userId = req.body.userId
+      req.toDoText = req.body.toDoText
+      
     } else {
-      res.status(403).send({ msg: "Your token was not verified" });
+      return res.status(403).send({ msg: "Your token was not verified" });
     }
   } catch (err) {
     res.send({ message: "There was an error in the token check" });
   }
+  next();
 }
 
 module.exports = { checkToDoLength, checkUserName, checkImage, checkToken };
