@@ -22,11 +22,11 @@ If all was well, server should be running at localhost:3001 and frontend should 
 
 ## Functionality
 
--Create username and password - please note, currently only usernames that end in "@gmail.com" will be accepted as valid by the server
-  -The password can be whatever you want it to be
--Create to-do item
--Delete to-do item
--Edit to-do item
--Toggle marking complete or not complete
+- Create username and password - please note, currently only usernames that end in "@gmail.com" will be accepted as valid by the server
+  - The password can be whatever you want it to be
+- Create to-do item
+- Delete to-do item
+- Edit to-do item
+- Toggle marking complete or not complete
 
 
