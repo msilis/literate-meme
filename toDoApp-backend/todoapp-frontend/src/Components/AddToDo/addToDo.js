@@ -72,6 +72,13 @@ export default function AddToDo({
     setEdit(false);
     toDoInput.current.value = "";
   }
+
+  //Enter key
+  function handleEnterKey(event){
+    if(event.key === "Enter"){
+      handleAddToDo()
+    }
+  }
   //conditionally render button text and set onClick function
   const buttonText = edit ? "Save" : "Add";
   const clickFunction = edit ? handleEdit : handleAddToDo;
@@ -82,6 +89,7 @@ export default function AddToDo({
         placeholder="What do you need to do?"
         className={style.toDoInput}
         ref={toDoInput}
+        onKeyDown={handleEnterKey}
       />
       {edit ? (
         <div>

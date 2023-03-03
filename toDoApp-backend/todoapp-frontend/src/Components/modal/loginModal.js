@@ -83,6 +83,13 @@ export default function LoginModal({
     setShowLoginModal(false);
   }
 
+  //Enter key functionality
+  function handleEnterKey(event){
+    if(event.key === "Enter"){
+      handleLoginUser()
+    }
+  }
+
   return (
     <div className={loginModal}>
       <div className="loginModalContainer">
@@ -93,8 +100,9 @@ export default function LoginModal({
           placeholder="Password"
           ref={password}
           type="password"
+          onKeyDown={handleEnterKey}
         />
-        <button onClick={handleLoginUser} className="loginButton">
+        <button onClick={handleLoginUser} className="loginButton" >
           Login
         </button>
         <button onClick={handleLoginCancel} className="cancelButton">
