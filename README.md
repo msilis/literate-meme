@@ -8,15 +8,15 @@ This app is built using React and Express. The information is stored in MongoDB 
 ## Installation
 
 ### Requirements
--MongoDB
--Node.js
+- MongoDB
+- Node.js
 
--Download the repository or zip file.
--Open console and go to where you unzipped the downloaded file and open `toDoApp-backend`
--Run `npm install` to download all dependencies for backend
--Open `todoapp-frontend` in console and run `npm install` to download all dependencies for frontend
--To start server, while in the backend folder, type `npm start`
--To start application, while in the frontend folder, type `npm start`
+- Download the repository or zip file.
+- Open console and go to where you unzipped the downloaded file and open `toDoApp-backend`
+- Run `npm install` to download all dependencies for backend
+- Open `todoapp-frontend` in console and run `npm install` to download all dependencies for frontend
+- To start server, while in the backend folder, type `npm start`
+- To start application, while in the frontend folder, type `npm start`
 
 If all was well, server should be running at localhost:3001 and frontend should be running at localhost:3000.
 
