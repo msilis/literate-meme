@@ -1,13 +1,13 @@
 # literate-meme
 ToDo App - Frontend and backend
 
-##Basics
+## Basics
 
 This app is built using React and Express. The information is stored in MongoDB and queried every time an action needs to be performed.
 
-##Installation
+## Installation
 
-###Requirements
+### Requirements
 -MongoDB
 -Node.js
 
@@ -20,7 +20,7 @@ This app is built using React and Express. The information is stored in MongoDB 
 
 If all was well, server should be running at localhost:3001 and frontend should be running at localhost:3000.
 
-##Functionality
+## Functionality
 
 -Create username and password - please note, currently only usernames that end in "@gmail.com" will be accepted as valid by the server
   -The password can be whatever you want it to be
