@@ -52,14 +52,14 @@ function checkToken(req, res, next) {
       console.log("Token verified")
       req.userId = req.body.userId
       req.toDoText = req.body.toDoText
-      
+      next();
     } else {
       return res.status(403).send({ msg: "Your token was not verified" });
     }
   } catch (err) {
     res.send({ message: "There was an error in the token check" });
   }
-  next();
+  
 }
 
 

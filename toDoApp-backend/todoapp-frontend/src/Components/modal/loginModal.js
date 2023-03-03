@@ -41,12 +41,12 @@ export default function LoginModal({
       })
         .then((response) => {
           if (response.status === 401) {
-            console.log("Invalid username or password");
             setInvalidLogin(true);
             setUserLoggedIn(false);
             setShowLoginModal(true);
             username.current.value = "";
             password.current.value = "";
+            /* throw new Error("Invalid username or password"); */
           } else {
             console.log("User logged in");
             setUserLoggedIn(true);
@@ -64,12 +64,13 @@ export default function LoginModal({
             setUserToken(data.token);
           }
 
-          return;
+          /* return; */
         })
         .then(() => {
           getToDo();
-        });
+        }).catch(()=>{console.log("There was an invalid username or password")});
     } catch (err) {
+      console.log('error from line 73')
       console.log(err);
     }
     setUserLoggedIn(true);
