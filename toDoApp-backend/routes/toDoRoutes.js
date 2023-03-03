@@ -39,10 +39,11 @@ router.post("/login", checkUserName, async (req, res) => {
   try {
     console.log("doing username check");
     const userLogin = await User.findOne({ username: usr, password: pwd });
+    console.log(userLogin)
     if (!userLogin) {
       console.log("Login not sucessful");
       res.status(401).send("Username or password incorrect");
-    } else {
+    } else if(userLogin != null){
       console.log("it got to here");
       let token = jwt.sign(
         {
@@ -58,7 +59,7 @@ router.post("/login", checkUserName, async (req, res) => {
         userLogin: userLogin["id"],
         token: token,
       });
-    }
+    } else (res.status(401).json({message: "login failed"}))
   } catch (err) {
     console.log(err);
   }
@@ -83,8 +84,8 @@ router.post(
       const addToDo = await newToDo.save();
       res.status(200).json(addToDo);
     } catch (err) {
-      console.log("Error got triggered")
-      console.log(err)
+      console.log("Error got triggered");
+      console.log(err);
       res.status(400).send({ msg: "There was an error" });
     }
   }
@@ -102,7 +103,7 @@ router.post("/getToDo", async (req, res) => {
 });
 
 //Delete ToDo
-router.delete("/:id", findToDoById, async (req, res) => {
+router.delete("/:id", checkToken, findToDoById, async (req, res) => {
   try {
     await res.todo.remove();
     res.json({ message: "Todo has been deleted from the database" });
@@ -135,7 +136,6 @@ router.patch("/edit/:id", findToDoById, async (req, res) => {
   }
 });
 
-//Find todo by ID middleware
 async function findToDoById(req, res, next) {
   let todo;
   try {

@@ -8,7 +8,7 @@ export default function LoginModal({
   setUserLoggedIn,
   getToDo,
   setUserAlias,
-  setUserToken
+  setUserToken,
 }) {
   const username = useRef();
   const password = useRef();
@@ -24,7 +24,7 @@ export default function LoginModal({
   const invalidLoginText = invalidLogin
     ? "invalidLoginVisible"
     : "invalidLoginHidden";
-  
+
   //function to check credentials and login user
   function handleLoginUser() {
     const loginData = {
@@ -45,10 +45,13 @@ export default function LoginModal({
             setInvalidLogin(true);
             setUserLoggedIn(false);
             setShowLoginModal(true);
+            username.current.value = "";
+            password.current.value = "";
           } else {
             console.log("User logged in");
             setUserLoggedIn(true);
-            setUserAlias(username.current?.value)
+            setUserAlias(username.current?.value);
+            setInvalidLogin(false);
             username.current.value = "";
             password.current.value = "";
           }
@@ -56,11 +59,15 @@ export default function LoginModal({
           return response.json();
         })
         .then((data) => {
-          setUserId(data.userLogin)
-          setUserToken(data.token)
+          if (data.userLogin != null) {
+            setUserId(data.userLogin);
+            setUserToken(data.token);
+          }
+
           return;
-        }).then(()=>{
-            getToDo()
+        })
+        .then(() => {
+          getToDo();
         });
     } catch (err) {
       console.log(err);

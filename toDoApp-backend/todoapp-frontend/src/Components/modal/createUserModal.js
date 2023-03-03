@@ -49,6 +49,7 @@ export default function CreateUserModal(props) {
     <div className={registerModal}>
       <div className="registerModalContainer">
         <h4>Register</h4>
+        <h5>Username must be a @gmail.com address</h5>
         <input
           className="loginInput"
           placeholder="Username"
