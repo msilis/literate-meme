@@ -17,11 +17,12 @@ export default function CreateUserModal(props) {
   //function to create user and send info to database
 
   function handleCreateUser() {
+    const username = newUsername.current?.value
     const createUserData = {
-      username: newUsername.current?.value,
+      username: username,
       password: newPassword.current?.value,
     };
-    try {
+    if(username.includes("@gmail.com")){try {
       fetch("/todo/register", {
         method: "POST",
         headers: {
@@ -36,7 +37,8 @@ export default function CreateUserModal(props) {
       setShowCreateModal(false);
     } catch (err) {
       console.log(err);
-    }
+    }}
+    else{alert("You username needs to include '@gmail.com'")}
   }
 
   //function to cancel creation of user
